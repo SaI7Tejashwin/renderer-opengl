@@ -11,6 +11,7 @@
 #include "VertexBufferLayout.h"
 #include "VertexArray.h"
 #include "Shader.h"
+#include "Texture.h"
 
 #define ASSERT(x) if (!(x)) __debugbreak(); //custom error debug macro for a detailed error message (compatible with older versions of opengl) 
 #define GLCall(x) GLClearError();\
@@ -146,7 +147,7 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+	window = glfwCreateWindow(640, 480, "OpenGL Renderer", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -167,10 +168,10 @@ int main(void)
 
 	{ //start of scope
 		float positions[] = {
-			-0.5f, -0.5f,	//0
-			 0.5f, -0.5f,	//1
-			 0.5f, 0.5f,	//2
-			-0.5f, 0.5f,	//3
+			-0.5f, -0.5f, 0.0f, 0.0f,	//0
+			 0.5f, -0.5f, 1.0f, 0.0f,	//1
+			 0.5f, 0.5f, 1.0f, 1.0f,	//2
+			-0.5f, 0.5f, 0.0f, 1.0f	//3
 
 		};
 
@@ -184,8 +185,9 @@ int main(void)
 		glBindVertexArray(vao); //vertex array has no target currently so we assign vao as its default.
 
 		VertexArray va;
-		VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+		VertexBuffer vb(positions, 4 * 4 * sizeof(float));
 		VertexBufferLayout layout;
+		layout.Push<float>(2);
 		layout.Push<float>(2);
 		va.AddBuffer(vb, layout);
 		/*
@@ -221,6 +223,10 @@ int main(void)
 													   //Each shader execution in a Rendering command is a "shader invocation"
 													   */
 		shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
+
+		Texture texture("resources/textures/amogus.png");
+		texture.Bind(2);
+		shader.SetUniform1i("u_Texture", 2);
 
 		/*glBindVertexArray(0);*/
 		va.Unbind();
