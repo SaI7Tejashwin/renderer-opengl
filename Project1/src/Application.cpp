@@ -180,6 +180,9 @@ int main(void)
 			2, 3, 0
 		};
 
+		glEnable(GL_BLEND); //enables Blending to the renderer at server-side
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		unsigned int vao; //vao stands for 'Vertex Array Object'
 		glGenVertexArrays(1, &vao);
 		glBindVertexArray(vao); //vertex array has no target currently so we assign vao as its default.
