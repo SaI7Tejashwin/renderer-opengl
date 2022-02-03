@@ -90,7 +90,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Project1\Dependencies\GLFW\include;$(SolutionDir)Project1\Dependencies\GLEW\glew-2.1.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/vendor;$(SolutionDir)Project1\Dependencies\GLFW\include;$(SolutionDir)Project1\Dependencies\GLEW\glew-2.1.0\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -125,7 +125,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Project1\Dependencies\GLFW\include;$(SolutionDir)Project1\Dependencies\GLEW\glew-2.1.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/vendor;$(SolutionDir)Project1\Dependencies\GLFW\include;$(SolutionDir)Project1\Dependencies\GLEW\glew-2.1.0\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>

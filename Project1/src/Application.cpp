@@ -13,6 +13,9 @@
 #include "Shader.h"
 #include "Texture.h"
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 #define ASSERT(x) if (!(x)) __debugbreak(); //custom error debug macro for a detailed error message (compatible with older versions of opengl) 
 #define GLCall(x) GLClearError();\
 	x;\
@@ -213,6 +216,8 @@ int main(void)
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(float), indices, GL_STATIC_DRAW);
 		*/
 
+		glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+
 		Shader shader("resources/shaders/BasicShader.shader");
 		shader.Bind();
 		/*ShaderProgramSource source = ParseShader("resources/shaders/BasicShader.shader");
@@ -226,6 +231,7 @@ int main(void)
 													   //Each shader execution in a Rendering command is a "shader invocation"
 													   */
 		shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
+		shader.SetUniformMat4f("u_MVP", proj); //adding a matrix projection which changes the aspect ratio.
 
 		Texture texture("resources/textures/amogus.png");
 		texture.Bind(2);
